@@ -8,22 +8,22 @@ using namespace std;
 #define prob_penyakit 0.6666667 //1 banding 15
 
 int penyakit [15] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-
-int A1 [3] = {20,21,23};
-int A2 [9] = {1,2,5,9,18,23,24,25};
-int A3 [5] = {11,19,26,27,52};
-int A4 [3] = {1,12,52};
-int A5 [7] = {1,21,28,30,31,32,33};
-int A6 [6] = {1,3,4,6,8,34};
-int A7 [3] = {9,35,36};
-int A8 [6] = {9,37,38,39,40,41};
-int A9 [5] = {4,6,14,42,43};
-int A10 [4] = {1,4,5,6};
-int A11 [3] = {44,45,46};
-int A12 [4] = {3,13,47,48};
-int A13 [7] = {3,5,6,15,16,43,49};
-int A14 [4] = {1,7,12,50};
-int A15 [5] = {5,3,9,17,51};
+int clues[15] ={3,9,5,3,7,6,3,6,5,4,3,4,7,4,5};
+int A[15][9]={{20,21,23},
+	{1,2,5,9,10,18,23,24,25},
+	{11,19,26,27,52},
+	{1,12,52},
+	{1,21,28,30,31,32,33},
+	{1,3,4,6,8,34},
+	{9,35,36},
+	{9,37,38,39,40,41},
+	{4,6,14,42,43},
+	{1,4,5,6},
+	{44,45,46},
+	{3,13,47,48},
+	{3,5,6,15,16,43,49},
+	{1,7,12,50},
+	{5,3,9,17,51}};
 
 string msg_gejala[52] = {"Mata nyeri hebat",
 "Mata menonjol",
@@ -92,7 +92,6 @@ float hitung_bobot_symptom(float array[], int size){
 	for (int i = 1;i<size;i++){
 		temp = temp * array[i];
 	}
-	//cout << temp << endl;
 	return temp;
 }
 
@@ -114,314 +113,24 @@ int main(){
 		input_user[i] = input;
 	}
 	for (int i=0;i<banyak_penyakit;i++){
-		if(penyakit[i] == 1){
 			int j=0;
 			int k=0;
 			while(j<gejala){
-					if(input_user[j] == A1[k]){
+					if(input_user[j] == A[i][k]){
 						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
 						j++;
 						k=0;
 					} else {
 						k++;
 					}
-					if (k==3){
+					if (k==clues[i]){
 						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
 						j++;
 						k=0;
 					}
 			}
 			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 2){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A2[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					} else {
-						k++;
-					}
-					if (k==9){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 3){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A3[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==5){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 4){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A4[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==3){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 5){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A5[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==7){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 6){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A6[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==6){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 7){
-			int j=0;
-			int k=0;
-			while (j<gejala){
-				if(input_user[j] == A7[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==6){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 8){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A8[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==3){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 9){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A9[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==5){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 10){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A10[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==4){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 11){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A11[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==3){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 12){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A12[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==4){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 13){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A13[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==7){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 14){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A14[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==4){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
-		if (penyakit[i] == 15){
-			int j=0;
-			int k=0;
-			while(j<gejala){
-				if(input_user[j] == A15[k]){
-						bobot_symptom[j] = ((1 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-						
-					} else {
-						k++;
-					}
-					if (k==5){
-						bobot_symptom[j] = ((0 + banyak_symptom) * prob_penyakit)/(1 + banyak_symptom);
-						j++;
-						k=0;
-					}
-			}
-			bobot_penyakit[i] = prob_penyakit * hitung_bobot_symptom(bobot_symptom,gejala);
-		}
 	}
-	
-	//int j=0;
-	//for (int i=0;i<banyak_penyakit;i++){
-	//	kesimpulan = j;
-	//	if (bobot_penyakit[i] > bobot_penyakit[j]){
-	//		kesimpulan = i;
-	//		j=i;
-	//	}
-	//}
 	
 	for(int i=0; i<banyak_penyakit; i++){
        for(int j=i; j<banyak_penyakit; j++){
@@ -436,9 +145,7 @@ int main(){
        }
 	}
 	cout << "\n";
-	//for (int i=0;i<banyak_penyakit;i++){
-	//	cout << bobot_penyakit[i] <<"\n";
-	//}
+
 	for(int i=0;i<3;i++){
 		if(i==0){
 			cout << "Paling Memungkinkan: ";
